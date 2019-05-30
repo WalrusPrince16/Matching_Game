@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Days+One|Monoton&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+
+  <link rel="stylesheet" href="./resources/css/reset.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./resources/css/style.css">
+
+  <title>Match Game</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3 col-xs-12" id="instructions">
+        <h1>Matching Game</h1>
+        <p>
+          Click on a card to reveal the number on the other side. Click on a
+          second card to try and find a match to the first. If you succeed,
+          the pair will be removed from play.
+        </p>
+        <h2>Settings</h2>
+        <div id="timer">
+          <button type="button" class"btn-danger" name="button">Start Timer</button>
+        </div>
+        <div id="reset">
+          <button type="button" name="button">Reset Game</button>
+        </div>
+      </div>
+
+      <div class="col-md-9 col-xs-12" id="game"></div>
+
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./resources/js/match-game.js"></script>
+  <script type="text/javascript" src="./resources/js/tests.js"></script>
+</body>
+</html>
