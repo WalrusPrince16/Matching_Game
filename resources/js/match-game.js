@@ -226,7 +226,7 @@ MatchGame.checkWin = function () {
 
   wonGame++;
 
-  if (wonGame === 1) {
+  if (wonGame === 8) {
     clearInterval(clockGoing);
     var time_remaining = $timer.text();
     var score = 0;
