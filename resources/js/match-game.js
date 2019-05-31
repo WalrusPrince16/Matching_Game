@@ -36,19 +36,23 @@ $(document).ready(function() {
   };
 
   // Calls the function to start the game.
-  
+
   MatchGame.startGame();
+
 });
+
+// This function allows the game to be reset from a button on the screen.
 
 MatchGame.resetGame = function ($reset) {
   $reset.click(function () {
+    // location.reload() just refreshes the page.
     location.reload();
   });
 };
 
 /*
   Generates and returns an array of matching card values.
- */
+*/
 
 MatchGame.generateCardValues = function () {
   // An empty list that will hold the two copies of the numbers
@@ -172,6 +176,7 @@ MatchGame.flipCard = function($card, $game) {
   // Otherwise, add data to the card.
   // NOTE: .css, .text, and .data are all called on $card at once
   // to save space and make the code more readable.
+
   $card.css('background-color', $card.data('color'))
     .text($card.data('value'))
     .data($card.data('flipped', true));
@@ -229,20 +234,20 @@ MatchGame.checkWin = function () {
     clearInterval(clockGoing);
     var time_remaining = $timer.text();
     var score = 0;
-    if (time_remaining == 60) {
+    if (time_remaining == 80) {
       alert("Cheater")
-    } else if (time_remaining >= 45) {
+    } else if (time_remaining >= 55) {
       score = (time_remaining * 100).toString();
       alert("Great Job, your score is: " + score)
-    } else if (time_remaining >= 30 && time_remaining <= 44) {
+    } else if (time_remaining >= 40 && time_remaining <= 54) {
       score = (time_remaining * 80).toString();
       alert("Good Job, your score is: " + score)
-    } else if (time_remaining >= 20 && time_remaining <= 43) {
+    } else if (time_remaining >= 20 && time_remaining <= 39) {
       score = (time_remaining * 40).toString();
-      alert("Ok Job, your score is: " + score)
+      alert("Your score is: " + score)
     } else if (time_remaining >= 1 && time_remaining <= 19) {
       score = (time_remaining * 10).toString();
-      alert("Bad Job, your score is: " + score)
+      alert("Your score is: " + score)
     } else {
       alert("Try again with the timer on for a score.")
     };
@@ -268,7 +273,7 @@ MatchGame.setTimer = function($timer, active) {
   // Seconds represents the number of seconds in the timer.
   // It is global so that it can be reset easily.
 
-  seconds = 60;
+  seconds = 80;
 
   // represents the timer's CSS.
 
@@ -287,8 +292,14 @@ MatchGame.setTimer = function($timer, active) {
   // refresh the timer.
 
   $timer.click(function(){
-    active = true
+    active = true;
+    $timer.animate({
+    height: "7rem",
+    fontSize: "3rem",
+    backgroundColor: "white"
+  }, "slow");
   });
+
 
   // The timer begins by using the setInterval function
   // this function is similar to a while loop in that it iterates
@@ -314,10 +325,11 @@ MatchGame.setTimer = function($timer, active) {
     // If active is equal to true, then i is decreased.
 
     if (active) {
-      console.log("Still active.");
-      // Short hand for i = i - i;
+      // Short hand for seconds = seconds - 1;
       seconds--;
       // Applies text and styling to the timer.
+      // The added text is the value of the seconds variable, while
+      // the css is the value of the timerCSS dictionary.
       $timer.text(seconds).css(timerCSS);
     };
   }, 1000);
