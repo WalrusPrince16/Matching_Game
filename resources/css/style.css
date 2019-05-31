@@ -44,3 +44,8 @@ p {
 .card:hover {
   cursor: pointer;
 }
+
+#settings button {
+  background-color: white;
+  width: 100%;
+}

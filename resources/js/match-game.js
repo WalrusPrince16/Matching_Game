@@ -14,36 +14,35 @@ var wonGame = 0;
 
 // the timer is accessed by multiple functions, so its scope is
 // set to global.
+
 var $timer = $("#timer");
 var $reset = $("#reset");
 
 // This code block is required to ensure that the code runs when the
 // page is loaded.
 $(document).ready(function() {
-
   // Initializes the HTML object #game as a jQ variable.
   MatchGame.startGame = function() {
+    var active = false;
     var $game = $("#game");
-
     // Sets the returned array of values to that of a function.
     var values = MatchGame.generateCardValues();
-
     // Calls the renderCards functions with the args created above.
     MatchGame.renderCards(values, $game);
-
     // Initiates the timer.
-    MatchGame.setTimer($timer);
+    MatchGame.setTimer($timer, active);
     // Initiates the reset button.
     MatchGame.resetGame($reset);
   };
+
   // Calls the function to start the game.
+  
   MatchGame.startGame();
 });
 
 MatchGame.resetGame = function ($reset) {
   $reset.click(function () {
-    seconds = 60;
-    MatchGame.startGame();
+    location.reload();
   });
 };
 
@@ -261,14 +260,10 @@ MatchGame.lostGame = function() {
   lostGameCard.data("flipped", true).css(lostCSS).text("X");
 };
 
-// Applies an additional timer-----------------------------------------
+// Applies an optional timer-----------------------------------------
 
-MatchGame.setTimer = function($timer) {
 
-  // active is used to prevent the timer from subtracting
-  // below zero.
-
-  var active = false;
+MatchGame.setTimer = function($timer, active) {
 
   // Seconds represents the number of seconds in the timer.
   // It is global so that it can be reset easily.
@@ -291,7 +286,9 @@ MatchGame.setTimer = function($timer) {
   // This prevents the user from repeatedly clicking the clock to
   // refresh the timer.
 
-  $timer.click(function() {active = true} );
+  $timer.click(function(){
+    active = true
+  });
 
   // The timer begins by using the setInterval function
   // this function is similar to a while loop in that it iterates
@@ -317,6 +314,7 @@ MatchGame.setTimer = function($timer) {
     // If active is equal to true, then i is decreased.
 
     if (active) {
+      console.log("Still active.");
       // Short hand for i = i - i;
       seconds--;
       // Applies text and styling to the timer.
